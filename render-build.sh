@@ -11,5 +11,8 @@ if [ "$ACTUAL_SHA" != "$EXPECTED_SHA" ]; then
 fi
 base64 -d source.b64 | tar -xz -C app
 cd app
+# R3F 9.7.0 currently peers React >=19 <19.3. Next 16 supports React 19.2.
+sed -i 's/"react": "19.3.0"/"react": "19.2.0"/' package.json
+sed -i 's/"react-dom": "19.3.0"/"react-dom": "19.2.0"/' package.json
 npm install
 npm run build
